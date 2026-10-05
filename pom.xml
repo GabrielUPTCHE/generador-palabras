@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>co.edu.uptc</groupId>
+    <artifactId>maquina-gramatica</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Máquina de Gramáticas</name>
+    <description>
+        Aplicación de escritorio que recibe una gramática libre de contexto, valida palabras
+        mediante derivación y genera los árboles de derivación particular y general.
+    </description>
+
+    <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+        <!-- La plataforma usa Cp1252; se fuerza UTF-8 porque el código usa λ, ⇒ y tildes -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <clase.principal>co.edu.uptc.gramatica.Main</clase.principal>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Compilación con Java 17 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
+
+            <!-- Jar ejecutable: java -jar target/maquina-gramatica-1.0.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${clase.principal}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Documentación: mvn javadoc:javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.2</version>
+                <configuration>
+                    <show>private</show>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <charset>UTF-8</charset>
+                    <doctitle>Máquina de Gramáticas - Documentación técnica</doctitle>
+                    <windowtitle>Máquina de Gramáticas</windowtitle>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
